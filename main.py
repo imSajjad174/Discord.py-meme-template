@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 
 
 @bot.command()
-async def memes(ctx):
+async def memetemplate(ctx):
     """Generates a random meme."""
     try:
         response = requests.get('https://api.imgflip.com/get_memes')
@@ -32,11 +32,14 @@ async def memes(ctx):
         embed = discord.Embed()
         embed.set_image(url=meme_url)
         
-        await ctx.send(embed=embed)
+        message = await ctx.send(embed=embed)
+        await message.add_reaction('👍') 
+        await message.add_reaction('👎')  
         
     except Exception as e:
         await ctx.send(f'An error occurred: {str(e)}')
-        
+
+
   
   
   
